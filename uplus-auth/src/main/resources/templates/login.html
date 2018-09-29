@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui">
+<meta charset="utf-8">
+<link rel="dns-prefetch" href="https://assets-cdn.github.com">
+<link rel="dns-prefetch" href="https://avatars0.githubusercontent.com">
+<link rel="dns-prefetch" href="https://avatars1.githubusercontent.com">
+<link rel="dns-prefetch" href="https://avatars2.githubusercontent.com">
+<link rel="dns-prefetch" href="https://avatars3.githubusercontent.com">
+<link rel="dns-prefetch" href="https://github-cloud.s3.amazonaws.com">
+<link rel="dns-prefetch"
+	href="https://user-images.githubusercontent.com/">
+<link crossorigin="anonymous" media="all"
+	integrity="sha512-Z0JAar9+DkI1NjGVdZr3GivARUgJtA0o2eHlTv7Ou2gshR5awWVf8QGsq11Ns9ZxQLEs+G5/SuARmvpOLMzulw=="
+	rel="stylesheet"
+	href="https://assets-cdn.github.com/assets/frameworks-95aff0b550d3fe338b645a4deebdcb1b.css" />
+<link crossorigin="anonymous" media="all"
+	integrity="sha512-h5cEqWTuBT7ANPGSQLt1mH+ozRnf2uZHIo5hzaBUEaFGGVZkq/aXrTxFNXPfCm9ir2ztHtlW4AAMl2IxBKc1pQ=="
+	rel="stylesheet"
+	href="https://assets-cdn.github.com/assets/github-e6bb18b320358b77abe040d2eb46b547.css" />
+<link crossorigin="anonymous" media="all"
+	integrity="sha512-/YdlYmXBl0rVnTX/ANGx7YStBlWdlnfFUtRTlTr8eBpzeBkOUj1GjReYy1/BdJ4wMwOXzQEri+e91nqx5xrwGg=="
+	rel="stylesheet"
+	href="https://assets-cdn.github.com/assets/site-d3b91707396b15f2783f5f891bc6d36e.css" />
+<meta name="viewport" content="width=device-width">
+<title>${websiteTitle}用户中心</title>
+<link rel="search" type="application/opensearchdescription+xml"
+	href="/opensearch.xml" title="GitHub">
+
+
+<link rel="mask-icon"
+	href="https://assets-cdn.github.com/pinned-octocat.svg" color="#000000">
+<link rel="icon" type="image/x-icon" class="js-site-favicon"
+	href="${websiteFaviconIco}">
+<link rel="manifest" href="/manifest.json" crossOrigin="use-credentials">
+</head>
+<body
+	class="logged-out env-production page-responsive min-width-0 session-authentication">
+	<div class="position-relative js-header-wrapper ">
+		<a href="#start-of-content" tabindex="1"
+			class="px-2 py-4 bg-blue text-white show-on-focus js-skip-to-content">Skip
+			to content</a>
+		<div id="js-pjax-loader-bar" class="pjax-loader-bar">
+			<div class="progress"></div>
+		</div>
+		<div class="header header-logged-out width-full pt-5 pb-4"
+			role="banner">
+			<div class="container clearfix width-full text-center">
+				<a href="${websiteLogoHref}"> <img
+					style="width: auto; max-width: 100%;" src="${websiteUrl}">
+				</a>
+			</div>
+		</div>
+	</div>
+	<div id="start-of-content" class="show-on-focus"></div>
+	<div role="main" class="application-main ">
+		<div id="js-pjax-container" data-pjax-container>
+			<div class="auth-form px-3" id="login">
+				<form action="${rc.contextPath}/authentication/form" method="post">
+					<input name="utf8" type="hidden" value="&#x2713;" /> <input
+						type="hidden" name="authenticity_token"
+						value="1eBr/fd5zLvhljWeXNxzFfxuqhRlsCpQhcOk3Q8lHLcJR0Kl85DEJPcXxWpMpUW9HRYMOwzjK/GZr17gdNX8EQ==" />
+					<div id="js-flash-container"></div>
+					<div class="auth-form-body mt-3">
+						<div
+							class="mb-4 pb-3 border-bottom border-gray-light h4 text-normal text-center">
+							<!-- <img alt="88ybg logo" class="rounded-1"
+								src="/identicons/app/oauth_app/599923" height="60" width="60" /> -->
+							<p>
+								<strong> </strong>
+								<#if (client_id??)> <br>
+								登录到 <strong>${client_id!} 应用</strong> <#else> <script>
+									//默认添加
+									alert("没有回调地址!将会登录到系统后台管理");
+								</script></#if>
+							</p>
+						</div>
+						<label for="login_field"> 账号 </label> <input type="text"
+							name="username" id="login_field" class="form-control input-block"
+							tabindex="1" autocapitalize="off" autocorrect="off"
+							autofocus="autofocus" /> <label for="password"> 密码 <a
+							class="label-link" href="#">忘记密码?</a>
+						</label> <input type="password" name="password" id="password"
+							class="form-control form-control input-block" tabindex="2" /> <input
+							type="submit" name="commit" value="登   录" tabindex="3"
+							class="btn btn-primary btn-block" data-disable-with="Signing in…" />
+					</div>
+				</form>
+				<!-- <p class="create-account-callout mt-3">
+					没有账号? <a data-ga-click="Sign in, switch to sign up" href="#">注册</a>.
+				</p> -->
+			</div>
+		</div>
+		<div class="modal-backdrop js-touch-events"></div>
+	</div>
+	<div style="text-align: center;padding-top: 280px;">${websiteRecord}</div>
+</body>
+</html>
