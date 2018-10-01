@@ -10,7 +10,9 @@
 
 #### 目录说明
 ybg_auth 授权中心（授权服务器）
+
 ybg_auth_admin 用户角色权限管理后端（相当于资源服务器）
+
 ybg_auth_adminUI node.js项目搭建的用户角色权限管理前端，默认端口8000
 
 
