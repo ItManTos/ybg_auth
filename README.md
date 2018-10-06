@@ -19,7 +19,7 @@ ybg_auth_adminUI node.js项目搭建的用户角色权限管理前端，默认�
 架构设计图
 
 
-![输入图片说明](https://images.gitee.com/uploads/images/2018/1006/211937_29482f21_880593.png "Untitled Diagram.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2018/1006/212322_937ce663_880593.png "Untitled Diagram.png")
 
 
 
