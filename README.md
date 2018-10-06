@@ -21,7 +21,15 @@ ybg_auth_adminUI node.js项目搭建的用户角色权限管理前端，默认�
 
 ![输入图片说明](https://images.gitee.com/uploads/images/2018/1006/212322_937ce663_880593.png "Untitled Diagram.png")
 
-
+#### 开发环境
+1. eclipse 最近版
+2. maven 3.3.9+
+3. jdk8
+4. redis 和redis客户端（RedisDesktopManager）
+5. mysql5.7 以及navicat 
+6. tortoise svn
+7. python
+8. node.js
 
 ### 安装教程
 
