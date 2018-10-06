@@ -1,7 +1,7 @@
 # ybg_auth 基于标准oauth2权限模型开发框架。
 
 #### 项目介绍
-基于开源的pig框架进行改造，使用springboot 开发。
+基于开源的pig框架进行改造，使用springboot 开发。入手难度？2年以上开发经验
 
 #### 软件架构
 软件架构说明
@@ -41,15 +41,20 @@ ybg_auth_adminUI node.js项目搭建的用户角色权限管理前端，默认�
 
 ### 安装教程
 
-1. 以后补充
-2. xxxx
-3. xxxx
+1. 如何导入项目？参考 https://gitee.com/YYDeament/88ybg/wikis/Home
+2. 安装环境 redis node.js maven 等环境？ 请百度
+3. 启动顺序：ybg_auth ->  ybg_auth_admin  -> ybg_auth_adminUI 
+4. 开发项目页面：http://localhost:8000 
+
+### 部署教程
+1. 暂不公布（收费）
+
 
 #### 使用说明
 
-1. 以后补充
-2. xxxx
-3. xxxx
+1. 启动ybg_auth项目（晚点再写）
+2. 启动ybg_auth_admin项目（晚点再写）
+3. 启动ybg_auth_adminUI （晚点再写）
 
 #### 参与贡献
 
