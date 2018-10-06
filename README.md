@@ -16,6 +16,12 @@ ybg_auth_admin 用户角色权限管理后端（相当于资源服务器）
 ybg_auth_adminUI node.js项目搭建的用户角色权限管理前端，默认端口8000
 
 
+架构设计图
+
+
+![输入图片说明](https://images.gitee.com/uploads/images/2018/1006/211937_29482f21_880593.png "Untitled Diagram.png")
+
+
 
 ### 安装教程
 
