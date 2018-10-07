@@ -70,8 +70,8 @@ ybg_auth_adminUI node.js项目搭建的用户角色权限管理前端，默认�
 
 5. 启动ybg_auth_adminUI 
     导入项目后，进入ybg_auth_adminUI 代码目录
-    shift+右键 如图所示 !
-[输入图片说明](https://images.gitee.com/uploads/images/2018/1007/094404_4aceac98_880593.png "屏幕截图.png")
+    shift+右键 如图所示 
+![输入图片说明](https://images.gitee.com/uploads/images/2018/1007/094404_4aceac98_880593.png "屏幕截图.png")
     先执行npm install命令
     执行完 再执行npm run dev 启动本地调试
 
