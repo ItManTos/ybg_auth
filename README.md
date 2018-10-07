@@ -51,16 +51,23 @@ ybg_auth_adminUI node.js项目搭建的用户角色权限管理前端，默认�
 
 
 #### 使用说明
-1. 安装好开发环境必要环境
+1. 安装好开发环境必要环境，并且确保redis，mysql 能启动，如果是远程的redis和Mysql 请确保能远程访问的权限
 2. 导入数据库文件，如果导不进 把字符varchar 的字节调小 导完后再改回来
 
 先导入到数据库，库的名称叫uplus_auth 数据库编码是utf8mb4
 
 ![输入图片说明](https://images.gitee.com/uploads/images/2018/1007/091517_aec68b78_880593.png "屏幕截图.png")
 
-3. 启动ybg_auth项目（晚点再写）
+3. 启动ybg_auth项目
+    导入项目的方式参考 https://gitee.com/YYDeament/88ybg/wikis/Home
+    修改ybg_auth项目中的application-dev.properties 文件 修改数据库配置和你的redis配置
+    右键   /uplus-auth/src/main/java/com/uplus/AuthApplication.java    run as java application ,启动项目即可
 
-4. 启动ybg_auth_admin项目（晚点再写）
+4. 启动ybg_auth_admin项目
+    导入项目的方式参考 https://gitee.com/YYDeament/88ybg/wikis/Home
+    修改ybg_auth_admin项目中的application-dev.properties 文件 修改数据库配置和你的redis配置
+    右键  /uplus-auth-admin/src/main/java/com/uplus/AuthAdminApplication.java    run as java application ,启动项目即可
+
 5. 启动ybg_auth_adminUI （晚点再写）
 
 #### 参与贡献
