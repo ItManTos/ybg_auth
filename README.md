@@ -68,7 +68,11 @@ ybg_auth_adminUI node.js项目搭建的用户角色权限管理前端，默认�
     修改ybg_auth_admin项目中的application-dev.properties 文件 修改数据库配置和你的redis配置
     右键  /uplus-auth-admin/src/main/java/com/uplus/AuthAdminApplication.java    run as java application ,启动项目即可
 
-5. 启动ybg_auth_adminUI （晚点再写）
+5. 启动ybg_auth_adminUI 
+    导入项目后，进入ybg_auth_adminUI 代码目录
+    shift+右键 如图所示
+    先执行npm install命令
+    执行完 再执行npm run dev 启动本地调试
 
 #### 参与贡献
 
