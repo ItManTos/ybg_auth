@@ -53,7 +53,7 @@ ybg_auth_adminUI node.js项目搭建的用户角色权限管理前端，默认�
 #### 使用说明
 1. 安装好开发环境必要环境
 2. 导入数据库文件，如果导不进 把字符varchar 的字节调小 导完后再改回来
-3. 
+
 先导入到数据库，库的名称叫uplus_auth 数据库编码是utf8mb4
 
 ![输入图片说明](https://images.gitee.com/uploads/images/2018/1007/091517_aec68b78_880593.png "屏幕截图.png")
