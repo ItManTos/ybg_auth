@@ -75,11 +75,12 @@ ybg_auth_adminUI node.js项目搭建的用户角色权限管理前端，默认�
     先执行npm install命令
     执行完 再执行npm run dev 启动本地调试
 
-#### 参与贡献
+#### 更多项目文档尽在wiki 或者 老项目中
 
-1. Fork 本项目
-2. 新建 Feat_xxx 分支
-3. 提交代码
-4. 新建 Pull Request
+https://gitee.com/SYDeament/ybg_auth/wikis/Home
+
+https://gitee.com/YYDeament/88ybg/wikis/Home
+
+
 
 
