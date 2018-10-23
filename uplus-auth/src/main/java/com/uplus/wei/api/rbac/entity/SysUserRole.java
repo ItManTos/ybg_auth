@@ -1,16 +1,14 @@
 package com.uplus.wei.api.rbac.entity;
 
+import java.io.Serializable;
+
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.extension.activerecord.Model;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import com.baomidou.mybatisplus.annotations.TableId;
-
-import com.baomidou.mybatisplus.annotations.TableField;
-
-import com.baomidou.mybatisplus.activerecord.Model;
-
-import com.baomidou.mybatisplus.annotations.TableName;
-
-import java.io.Serializable;
 
 /**
  * <p>
@@ -24,14 +22,17 @@ import java.io.Serializable;
 @TableName("sys_user_role")
 public class SysUserRole extends Model<SysUserRole> {
 
-	private static final long serialVersionUID = 1L;
-
 	/**
-	 * 用户ID
+	 * 角色ID列的数据库字段名称
 	 */
-	@TableId("user_id")
-	@ApiModelProperty(value = "用户ID")
-	private Integer userId;
+	public static final String ROLE_ID = "role_id";
+
+	private static final long serialVersionUID = 1L;
+	/**
+	 * 用户ID列的数据库字段名称
+	 */
+	public static final String USER_ID = "user_id";
+
 	/**
 	 * 角色ID
 	 */
@@ -40,25 +41,29 @@ public class SysUserRole extends Model<SysUserRole> {
 	private Integer roleId;
 
 	/**
-	 * 获取用户ID
+	 * 用户ID
 	 */
-	public Integer getUserId() {
-		return userId;
-	}
-
-	/**
-	 * 设置用户ID
-	 */
-
-	public void setUserId(Integer userId) {
-		this.userId = userId;
-	}
+	@TableId("user_id")
+	@ApiModelProperty(value = "用户ID")
+	private Integer userId;
 
 	/**
 	 * 获取角色ID
 	 */
 	public Integer getRoleId() {
 		return roleId;
+	}
+
+	/**
+	 * 获取用户ID
+	 */
+	public Integer getUserId() {
+		return userId;
+	}
+
+	@Override
+	protected Serializable pkVal() {
+		return this.userId;
 	}
 
 	/**
@@ -70,18 +75,11 @@ public class SysUserRole extends Model<SysUserRole> {
 	}
 
 	/**
-	 * 用户ID列的数据库字段名称
+	 * 设置用户ID
 	 */
-	public static final String USER_ID = "user_id";
 
-	/**
-	 * 角色ID列的数据库字段名称
-	 */
-	public static final String ROLE_ID = "role_id";
-
-	@Override
-	protected Serializable pkVal() {
-		return this.userId;
+	public void setUserId(Integer userId) {
+		this.userId = userId;
 	}
 
 	@Override

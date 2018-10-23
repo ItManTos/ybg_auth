@@ -19,8 +19,8 @@
 
 package com.uplus.wei.api.rbac.service;
 
-import com.baomidou.mybatisplus.plugins.Page;
-import com.baomidou.mybatisplus.service.IService;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.uplus.wei.api.rbac.dto.Query;
 import com.uplus.wei.api.rbac.dto.UserDTO;
 import com.uplus.wei.api.rbac.dto.UserInfo;
@@ -32,72 +32,56 @@ import com.uplus.wei.api.rbac.vo.UserVO;
  * @date 2017/10/31
  */
 public interface SysUserService extends IService<SysUser> {
-    /**
-     * 查询用户信息
-     *
-     * @param username
-     *            用户名
-     * @return userInfo
-     */
-    UserInfo findUserInfo(
-            String username);
+	/**
+	 * 删除用户
+	 *
+	 * @param sysUser 用户
+	 * @return boolean
+	 */
+	Boolean deleteUserById(SysUser sysUser);
 
-    /**
-     * 分页查询用户信息（含有角色信息）
-     *
-     * @param query
-     *            查询条件
-     * 
-     * @param userName
-     * @return
-     */
-    Page<com.uplus.wei.api.rbac.vo.UserVO> selectWithRolePage(
-            Query<com.uplus.wei.api.rbac.vo.UserVO> query,
-            String userName);
+	/**
+	 * 查询用户信息
+	 *
+	 * @param username 用户名
+	 * @return userInfo
+	 */
+	UserInfo findUserInfo(String username);
 
-    /**
-     * 删除用户
-     *
-     * @param sysUser
-     *            用户
-     * @return boolean
-     */
-    Boolean deleteUserById(
-            SysUser sysUser);
+	/**
+	 * 通过ID查询用户信息
+	 *
+	 * @param id 用户ID
+	 * @return 用户信息
+	 */
+	UserVO selectUserVoById(Integer id);
 
-    /**
-     * 更新当前用户基本信息
-     *
-     * @param userDto
-     *            用户信息
-     * @param username
-     *            用户名
-     * @return Boolean
-     */
-    Boolean updateUserInfo(
-            UserDTO userDto,
-            String username);
+	/**
+	 * 分页查询用户信息（含有角色信息）
+	 *
+	 * @param query    查询条件
+	 *
+	 * @param userName
+	 * @return
+	 */
+	Page<com.uplus.wei.api.rbac.vo.UserVO> selectWithRolePage(Query<com.uplus.wei.api.rbac.vo.UserVO> query,
+			String userName);
 
-    /**
-     * 更新指定用户信息
-     *
-     * @param userDto
-     *            用户信息
-     * @param username
-     *            用户信息
-     * @return
-     */
-    Boolean updateUser(
-            UserDTO userDto,
-            String username);
+	/**
+	 * 更新指定用户信息
+	 *
+	 * @param userDto  用户信息
+	 * @param username 用户信息
+	 * @return
+	 */
+	Boolean updateUser(UserDTO userDto, String username);
 
-    /**
-     * 通过ID查询用户信息
-     *
-     * @param id
-     *            用户ID
-     * @return 用户信息
-     */
-    UserVO selectUserVoById(
-            Integer id);
+	/**
+	 * 更新当前用户基本信息
+	 *
+	 * @param userDto  用户信息
+	 * @param username 用户名
+	 * @return Boolean
+	 */
+	Boolean updateUserInfo(UserDTO userDto, String username);
 }

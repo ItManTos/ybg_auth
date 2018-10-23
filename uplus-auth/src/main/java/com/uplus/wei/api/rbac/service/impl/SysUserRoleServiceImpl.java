@@ -19,12 +19,12 @@
 
 package com.uplus.wei.api.rbac.service.impl;
 
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import org.springframework.stereotype.Service;
+
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.uplus.wei.api.rbac.dao.SysUserRoleMapper;
 import com.uplus.wei.api.rbac.entity.SysUserRole;
 import com.uplus.wei.api.rbac.service.SysUserRoleService;
-import org.springframework.stereotype.Service;
-
 
 /**
  * <p>

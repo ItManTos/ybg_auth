@@ -22,7 +22,7 @@ package com.uplus.wei.api.rbac.dao;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Param;
 
-import com.baomidou.mybatisplus.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.uplus.wei.api.rbac.entity.SysUserRole;
 
 /**

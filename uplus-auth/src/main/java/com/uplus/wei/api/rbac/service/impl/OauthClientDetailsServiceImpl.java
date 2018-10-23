@@ -1,10 +1,11 @@
 package com.uplus.wei.api.rbac.service.impl;
 
-import com.uplus.wei.api.rbac.entity.OauthClientDetails;
-import com.uplus.wei.api.rbac.dao.OauthClientDetailsMapper;
-import com.uplus.wei.api.rbac.service.OauthClientDetailsService;
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
+
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.uplus.wei.api.rbac.dao.OauthClientDetailsMapper;
+import com.uplus.wei.api.rbac.entity.OauthClientDetails;
+import com.uplus.wei.api.rbac.service.OauthClientDetailsService;
 
 /**
  * <p>

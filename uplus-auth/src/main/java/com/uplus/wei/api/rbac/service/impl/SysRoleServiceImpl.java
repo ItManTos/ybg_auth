@@ -26,7 +26,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.uplus.wei.api.rbac.dao.SysRoleMapper;
 import com.uplus.wei.api.rbac.dto.RoleDTO;
 import com.uplus.wei.api.rbac.entity.SysRole;
@@ -43,53 +43,48 @@ import com.uplus.wei.api.rbac.service.SysRoleService;
 @Service
 public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> implements SysRoleService {
 
-    @Autowired
-    private SysRoleMapper sysRoleMapper;
+	@Autowired
+	private SysRoleMapper sysRoleMapper;
 
-    /**
-     * 添加角色
-     *
-     * @param roleDto
-     *            角色信息
-     * @return 成功、失败
-     */
-    @Override
-    public Boolean insertRole(
-            RoleDTO roleDto) {
-        SysRole sysRole = new SysRole();
-        BeanUtils.copyProperties(roleDto, sysRole);
-        sysRoleMapper.insert(sysRole);
-        return true;
-    }
+	/**
+	 * 通过用户ID，查询角色信息
+	 *
+	 * @param userId
+	 * @return
+	 */
+	@Override
+	public List<SysRole> findRolesByUserId(Integer userId) {
+		return sysRoleMapper.findRolesByUserId(userId);
+	}
 
-    /**
-     * 更新角色
-     *
-     * @param roleDto
-     *            含有部门信息
-     * @return 成功、失败
-     */
-    @Transactional(rollbackFor = Exception.class)
-    @Override
-    public Boolean updateRoleById(
-            RoleDTO roleDto) {
+	/**
+	 * 添加角色
+	 *
+	 * @param roleDto 角色信息
+	 * @return 成功、失败
+	 */
+	@Override
+	public Boolean insertRole(RoleDTO roleDto) {
+		SysRole sysRole = new SysRole();
+		BeanUtils.copyProperties(roleDto, sysRole);
+		sysRoleMapper.insert(sysRole);
+		return true;
+	}
 
-        // 更新角色信息
-        SysRole sysRole = new SysRole();
-        BeanUtils.copyProperties(roleDto, sysRole);
-        sysRoleMapper.updateById(sysRole);
-        return true;
-    }
+	/**
+	 * 更新角色
+	 *
+	 * @param roleDto 含有部门信息
+	 * @return 成功、失败
+	 */
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public Boolean updateRoleById(RoleDTO roleDto) {
 
-    /**
-     * 通过用户ID，查询角色信息
-     *
-     * @param userId
-     * @return
-     */
-    @Override
-    public List<SysRole> findRolesByUserId(
-            Integer userId) {
-        return sysRoleMapper.findRolesByUserId(userId);
-    }
+		// 更新角色信息
+		SysRole sysRole = new SysRole();
+		BeanUtils.copyProperties(roleDto, sysRole);
+		sysRoleMapper.updateById(sysRole);
+		return true;
+	}
 }

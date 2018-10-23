@@ -21,7 +21,7 @@ package com.uplus.wei.api.rbac.service;
 
 import java.util.List;
 
-import com.baomidou.mybatisplus.service.IService;
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.uplus.wei.api.rbac.entity.SysMenu;
 import com.uplus.wei.api.rbac.vo.MenuVO;
 

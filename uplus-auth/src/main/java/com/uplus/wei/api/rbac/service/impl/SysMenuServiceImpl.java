@@ -26,8 +26,8 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.uplus.wei.api.rbac.dao.SysMenuMapper;
 import com.uplus.wei.api.rbac.entity.SysMenu;
 import com.uplus.wei.api.rbac.service.SysMenuService;
@@ -61,7 +61,8 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
 		conditon2.setParentId(id);
 		SysMenu sysMenu = new SysMenu();
 		sysMenu.setDelFlag(CommonConstant.STATUS_DEL);
-		return update(sysMenu, new EntityWrapper<>(conditon2));
+
+		return update(sysMenu, new UpdateWrapper<>(conditon2));
 	}
 
 	@Override

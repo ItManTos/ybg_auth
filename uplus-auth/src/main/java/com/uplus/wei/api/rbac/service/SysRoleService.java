@@ -21,7 +21,7 @@ package com.uplus.wei.api.rbac.service;
 
 import java.util.List;
 
-import com.baomidou.mybatisplus.service.IService;
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.uplus.wei.api.rbac.dto.RoleDTO;
 import com.uplus.wei.api.rbac.entity.SysRole;
 
@@ -35,32 +35,27 @@ import com.uplus.wei.api.rbac.entity.SysRole;
  */
 public interface SysRoleService extends IService<SysRole> {
 
-    /**
-     * 添加角色
-     *
-     * @param roleDto
-     *            角色信息
-     * @return 成功、失败
-     */
-    Boolean insertRole(
-            RoleDTO roleDto);
+	/**
+	 * 通过用户ID，查询角色信息
+	 *
+	 * @param userId
+	 * @return
+	 */
+	List<SysRole> findRolesByUserId(Integer userId);
 
-    /**
-     * 更新角色
-     *
-     * @param roleDto
-     *            含有部门信息
-     * @return 成功、失败
-     */
-    Boolean updateRoleById(
-            RoleDTO roleDto);
+	/**
+	 * 添加角色
+	 *
+	 * @param roleDto 角色信息
+	 * @return 成功、失败
+	 */
+	Boolean insertRole(RoleDTO roleDto);
 
-    /**
-     * 通过用户ID，查询角色信息
-     *
-     * @param userId
-     * @return
-     */
-    List<SysRole> findRolesByUserId(
-            Integer userId);
+	/**
+	 * 更新角色
+	 *
+	 * @param roleDto 含有部门信息
+	 * @return 成功、失败
+	 */
+	Boolean updateRoleById(RoleDTO roleDto);
 }

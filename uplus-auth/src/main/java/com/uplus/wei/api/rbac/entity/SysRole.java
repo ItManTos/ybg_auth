@@ -1,20 +1,16 @@
 package com.uplus.wei.api.rbac.entity;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-import com.baomidou.mybatisplus.enums.IdType;
-
+import java.io.Serializable;
 import java.util.Date;
 
-import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.extension.activerecord.Model;
 
-import com.baomidou.mybatisplus.annotations.TableField;
-
-import com.baomidou.mybatisplus.activerecord.Model;
-
-import com.baomidou.mybatisplus.annotations.TableName;
-
-import java.io.Serializable;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 /**
  * <p>
@@ -28,44 +24,44 @@ import java.io.Serializable;
 @TableName("sys_role")
 public class SysRole extends Model<SysRole> {
 
-	private static final long serialVersionUID = 1L;
+	/**
+	 * 创建时间列的数据库字段名称
+	 */
+	public static final String CREATE_TIME = "create_time";
 
 	/**
-	 * 角色主键
+	 * 删除标识（0-正常,1-删除）列的数据库字段名称
 	 */
-	@TableId(value = "role_id", type = IdType.AUTO)
-	@ApiModelProperty(value = "角色主键")
-	private Integer roleId;
+	public static final String DEL_FLAG = "del_flag";
 	/**
-	 * 角色名称，如ROLE_ADMIN
+	 * 角色编码列的数据库字段名称
 	 */
-	@TableField("role_name")
-	@ApiModelProperty(value = "角色名称，如ROLE_ADMIN")
-	private String roleName;
+	public static final String ROLE_CODE = "role_code";
 	/**
-	 * 角色编码
+	 * 角色描述列的数据库字段名称
 	 */
-	@TableField("role_code")
-	@ApiModelProperty(value = "角色编码")
-	private String roleCode;
+	public static final String ROLE_DESC = "role_desc";
 	/**
-	 * 角色描述
+	 * 角色主键列的数据库字段名称
 	 */
-	@TableField("role_desc")
-	@ApiModelProperty(value = "角色描述")
-	private String roleDesc;
+	public static final String ROLE_ID = "role_id";
+	/**
+	 * 角色名称，如ROLE_ADMIN列的数据库字段名称
+	 */
+	public static final String ROLE_NAME = "role_name";
+	private static final long serialVersionUID = 1L;
+	/**
+	 * 更新时间列的数据库字段名称
+	 */
+	public static final String UPDATE_TIME = "update_time";
+
 	/**
 	 * 创建时间
 	 */
 	@TableField("create_time")
 	@ApiModelProperty(value = "创建时间")
 	private Date createTime;
-	/**
-	 * 更新时间
-	 */
-	@TableField("update_time")
-	@ApiModelProperty(value = "更新时间")
-	private Date updateTime;
+
 	/**
 	 * 删除标识（0-正常,1-删除）
 	 */
@@ -74,33 +70,52 @@ public class SysRole extends Model<SysRole> {
 	private String delFlag;
 
 	/**
-	 * 获取角色主键
+	 * 角色编码
 	 */
-	public Integer getRoleId() {
-		return roleId;
+	@TableField("role_code")
+	@ApiModelProperty(value = "角色编码")
+	private String roleCode;
+
+	/**
+	 * 角色描述
+	 */
+	@TableField("role_desc")
+	@ApiModelProperty(value = "角色描述")
+	private String roleDesc;
+
+	/**
+	 * 角色主键
+	 */
+	@TableId(value = "role_id", type = IdType.AUTO)
+	@ApiModelProperty(value = "角色主键")
+	private Integer roleId;
+
+	/**
+	 * 角色名称，如ROLE_ADMIN
+	 */
+	@TableField("role_name")
+	@ApiModelProperty(value = "角色名称，如ROLE_ADMIN")
+	private String roleName;
+
+	/**
+	 * 更新时间
+	 */
+	@TableField("update_time")
+	@ApiModelProperty(value = "更新时间")
+	private Date updateTime;
+
+	/**
+	 * 获取创建时间
+	 */
+	public Date getCreateTime() {
+		return createTime;
 	}
 
 	/**
-	 * 设置角色主键
+	 * 获取删除标识（0-正常,1-删除）
 	 */
-
-	public void setRoleId(Integer roleId) {
-		this.roleId = roleId;
-	}
-
-	/**
-	 * 获取角色名称，如ROLE_ADMIN
-	 */
-	public String getRoleName() {
-		return roleName;
-	}
-
-	/**
-	 * 设置角色名称，如ROLE_ADMIN
-	 */
-
-	public void setRoleName(String roleName) {
-		this.roleName = roleName;
+	public String getDelFlag() {
+		return delFlag;
 	}
 
 	/**
@@ -111,14 +126,6 @@ public class SysRole extends Model<SysRole> {
 	}
 
 	/**
-	 * 设置角色编码
-	 */
-
-	public void setRoleCode(String roleCode) {
-		this.roleCode = roleCode;
-	}
-
-	/**
 	 * 获取角色描述
 	 */
 	public String getRoleDesc() {
@@ -126,18 +133,29 @@ public class SysRole extends Model<SysRole> {
 	}
 
 	/**
-	 * 设置角色描述
+	 * 获取角色主键
 	 */
-
-	public void setRoleDesc(String roleDesc) {
-		this.roleDesc = roleDesc;
+	public Integer getRoleId() {
+		return roleId;
 	}
 
 	/**
-	 * 获取创建时间
+	 * 获取角色名称，如ROLE_ADMIN
 	 */
-	public Date getCreateTime() {
-		return createTime;
+	public String getRoleName() {
+		return roleName;
+	}
+
+	/**
+	 * 获取更新时间
+	 */
+	public Date getUpdateTime() {
+		return updateTime;
+	}
+
+	@Override
+	protected Serializable pkVal() {
+		return this.roleId;
 	}
 
 	/**
@@ -149,28 +167,6 @@ public class SysRole extends Model<SysRole> {
 	}
 
 	/**
-	 * 获取更新时间
-	 */
-	public Date getUpdateTime() {
-		return updateTime;
-	}
-
-	/**
-	 * 设置更新时间
-	 */
-
-	public void setUpdateTime(Date updateTime) {
-		this.updateTime = updateTime;
-	}
-
-	/**
-	 * 获取删除标识（0-正常,1-删除）
-	 */
-	public String getDelFlag() {
-		return delFlag;
-	}
-
-	/**
 	 * 设置删除标识（0-正常,1-删除）
 	 */
 
@@ -179,43 +175,43 @@ public class SysRole extends Model<SysRole> {
 	}
 
 	/**
-	 * 角色主键列的数据库字段名称
+	 * 设置角色编码
 	 */
-	public static final String ROLE_ID = "role_id";
+
+	public void setRoleCode(String roleCode) {
+		this.roleCode = roleCode;
+	}
 
 	/**
-	 * 角色名称，如ROLE_ADMIN列的数据库字段名称
+	 * 设置角色描述
 	 */
-	public static final String ROLE_NAME = "role_name";
+
+	public void setRoleDesc(String roleDesc) {
+		this.roleDesc = roleDesc;
+	}
 
 	/**
-	 * 角色编码列的数据库字段名称
+	 * 设置角色主键
 	 */
-	public static final String ROLE_CODE = "role_code";
+
+	public void setRoleId(Integer roleId) {
+		this.roleId = roleId;
+	}
 
 	/**
-	 * 角色描述列的数据库字段名称
+	 * 设置角色名称，如ROLE_ADMIN
 	 */
-	public static final String ROLE_DESC = "role_desc";
+
+	public void setRoleName(String roleName) {
+		this.roleName = roleName;
+	}
 
 	/**
-	 * 创建时间列的数据库字段名称
+	 * 设置更新时间
 	 */
-	public static final String CREATE_TIME = "create_time";
 
-	/**
-	 * 更新时间列的数据库字段名称
-	 */
-	public static final String UPDATE_TIME = "update_time";
-
-	/**
-	 * 删除标识（0-正常,1-删除）列的数据库字段名称
-	 */
-	public static final String DEL_FLAG = "del_flag";
-
-	@Override
-	protected Serializable pkVal() {
-		return this.roleId;
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
 	}
 
 	@Override
