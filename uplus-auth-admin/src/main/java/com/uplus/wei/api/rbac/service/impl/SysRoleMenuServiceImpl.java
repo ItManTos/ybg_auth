@@ -25,8 +25,8 @@ import java.util.List;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.uplus.wei.api.rbac.entity.SysRoleMenu;
 import com.uplus.wei.api.rbac.mapper.SysRoleMenuMapper;
 import com.uplus.wei.api.rbac.service.SysRoleMenuService;
@@ -46,7 +46,7 @@ public class SysRoleMenuServiceImpl extends ServiceImpl<SysRoleMenuMapper, SysRo
 	public Boolean insertRoleMenus(String role, Integer roleId, Integer[] menuIds) {
 		SysRoleMenu condition = new SysRoleMenu();
 		condition.setRoleId(roleId);
-		delete(new EntityWrapper<>(condition));
+		remove(new QueryWrapper<>(condition));
 
 		List<SysRoleMenu> roleMenuList = new ArrayList<>();
 		for (Integer menuId : menuIds) {
@@ -55,6 +55,6 @@ public class SysRoleMenuServiceImpl extends ServiceImpl<SysRoleMenuMapper, SysRo
 			roleMenu.setMenuId(menuId);
 			roleMenuList.add(roleMenu);
 		}
-		return this.insertBatch(roleMenuList);
+		return this.saveBatch(roleMenuList);
 	}
 }

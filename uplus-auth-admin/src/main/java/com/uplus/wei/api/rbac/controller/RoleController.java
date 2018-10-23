@@ -34,9 +34,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.baomidou.mybatisplus.mapper.Wrapper;
-import com.baomidou.mybatisplus.plugins.Page;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.uplus.wei.api.rbac.dto.RoleDTO;
 import com.uplus.wei.api.rbac.entity.SysRole;
 import com.uplus.wei.api.rbac.service.SysRoleMenuService;
@@ -65,7 +64,7 @@ public class RoleController {
 	 */
 	@GetMapping("/{id}")
 	public SysRole role(@PathVariable Integer id) {
-		return sysRoleService.selectById(id);
+		return sysRoleService.getById(id);
 	}
 
 	/**
@@ -83,7 +82,7 @@ public class RoleController {
 	@DeleteMapping("/{id}")
 	@PreAuthorize("@pms.hasPermission('sys_role_del')")
 	public R<Boolean> roleDel(@PathVariable Integer id) {
-		SysRole sysRole = sysRoleService.selectById(id);
+		SysRole sysRole = sysRoleService.getById(id);
 		sysRole.setDelFlag(CommonConstant.STATUS_DEL);
 		return new R<>(sysRoleService.updateById(sysRole));
 	}
@@ -96,10 +95,10 @@ public class RoleController {
 	 */
 	@GetMapping("/roleList")
 	public List<SysRole> roleList() {
-		Wrapper<SysRole> query = new EntityWrapper<>();
+		QueryWrapper<SysRole> query = new QueryWrapper<>();
 		// query.eq(SysRole., params)
 		// return sysRoleService.selectListByDeptId(deptId);
-		return sysRoleService.selectList(query);
+		return sysRoleService.list(query);
 
 	}
 
@@ -113,7 +112,7 @@ public class RoleController {
 	@PutMapping("/roleMenuUpd")
 	@PreAuthorize("@pms.hasPermission('sys_role_perm')")
 	public R<Boolean> roleMenuUpd(Integer roleId, @RequestParam("menuIds[]") Integer[] menuIds) {
-		SysRole sysRole = sysRoleService.selectById(roleId);
+		SysRole sysRole = sysRoleService.getById(roleId);
 		return new R<>(sysRoleMenuService.insertRoleMenus(sysRole.getRoleCode(), roleId, menuIds));
 	}
 
@@ -126,7 +125,7 @@ public class RoleController {
 	@RequestMapping("/rolePage")
 	public Page rolePage(@RequestParam Map<String, Object> params) {
 		params.put(CommonConstant.DEL_FLAG, CommonConstant.STATUS_NORMAL);
-		return sysRoleService.selectwithDeptPage(new Query<>(params), new EntityWrapper<>());
+		return sysRoleService.selectwithDeptPage(new Query<>(params), new QueryWrapper<>());
 	}
 
 	/**

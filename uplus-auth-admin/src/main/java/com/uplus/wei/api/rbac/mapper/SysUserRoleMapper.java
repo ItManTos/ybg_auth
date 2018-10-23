@@ -22,7 +22,7 @@ package com.uplus.wei.api.rbac.mapper;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Param;
 
-import com.baomidou.mybatisplus.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.uplus.wei.api.rbac.entity.SysUserRole;
 
 /**
@@ -34,16 +34,14 @@ import com.uplus.wei.api.rbac.entity.SysUserRole;
  * @since 2017-10-29
  */
 public interface SysUserRoleMapper extends BaseMapper<SysUserRole> {
-    /**
-     * 根据用户Id删除该用户的角色关系
-     *
-     * @param userId
-     *            用户ID
-     * @return boolean
-     * @author 寻欢·李
-     * @date 2017年12月7日 16:31:38
-     */
-    @Delete("DELETE FROM sys_user_role WHERE user_id = #{userId}")
-    Boolean deleteByUserId(
-            @Param("userId") Integer userId);
+	/**
+	 * 根据用户Id删除该用户的角色关系
+	 *
+	 * @param userId 用户ID
+	 * @return boolean
+	 * @author 寻欢·李
+	 * @date 2017年12月7日 16:31:38
+	 */
+	@Delete("DELETE FROM sys_user_role WHERE user_id = #{userId}")
+	Boolean deleteByUserId(@Param("userId") Integer userId);
 }

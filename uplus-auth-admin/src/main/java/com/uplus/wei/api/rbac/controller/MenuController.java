@@ -37,7 +37,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.uplus.wei.api.rbac.dto.MenuTree;
 import com.uplus.wei.api.rbac.entity.SysMenu;
 import com.uplus.wei.api.rbac.service.SysMenuService;
@@ -80,7 +80,7 @@ public class MenuController {
 	public List<MenuTree> getTree() {
 		SysMenu condition = new SysMenu();
 		condition.setDelFlag(CommonConstant.STATUS_NORMAL);
-		return TreeUtil.bulidTree(sysMenuService.selectList(new EntityWrapper<>(condition)), -1);
+		return TreeUtil.bulidTree(sysMenuService.list(new QueryWrapper<>(condition)), -1);
 	}
 
 	/**
@@ -91,7 +91,7 @@ public class MenuController {
 	 */
 	@GetMapping("/{id}")
 	public SysMenu menu(@PathVariable Integer id) {
-		return sysMenuService.selectById(id);
+		return sysMenuService.getById(id);
 	}
 
 	/**
@@ -103,7 +103,7 @@ public class MenuController {
 	@PostMapping
 	@PreAuthorize("@pms.hasPermission('sys_menu_add')")
 	public R<Boolean> menu(@RequestBody SysMenu sysMenu) {
-		return new R<>(sysMenuService.insert(sysMenu));
+		return new R<>(sysMenuService.save(sysMenu));
 	}
 
 	/**

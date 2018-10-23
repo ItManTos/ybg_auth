@@ -19,8 +19,8 @@
 
 package com.uplus.wei.api.rbac.service;
 
-import com.baomidou.mybatisplus.plugins.Page;
-import com.baomidou.mybatisplus.service.IService;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.uplus.wei.api.rbac.dto.UserDTO;
 import com.uplus.wei.api.rbac.dto.UserInfo;
 import com.uplus.wei.api.rbac.entity.SysUser;

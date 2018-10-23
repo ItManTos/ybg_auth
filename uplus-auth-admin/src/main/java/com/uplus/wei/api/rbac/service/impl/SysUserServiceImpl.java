@@ -35,9 +35,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.baomidou.mybatisplus.plugins.Page;
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.uplus.wei.api.rbac.dto.UserDTO;
 import com.uplus.wei.api.rbac.dto.UserInfo;
 import com.uplus.wei.api.rbac.entity.SysRole;
@@ -85,7 +85,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
 	@CacheEvict(value = "user_details", key = "#sysUser.username")
 	public Boolean deleteUserById(SysUser sysUser) {
 		sysUserRoleService.deleteByUserId(sysUser.getUserId());
-		deleteById(sysUser.getUserId());
+		removeById(sysUser.getUserId());
 		return Boolean.TRUE;
 	}
 
@@ -100,7 +100,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
 	public UserInfo findUserInfo(String username) {
 		SysUser condition = new SysUser();
 		condition.setUsername(username);
-		SysUser sysUser = selectOne(new EntityWrapper<>(condition));
+		SysUser sysUser = getOne(new QueryWrapper<>(condition));
 		if (sysUser == null) {
 			return null;
 		}
@@ -165,7 +165,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
 
 		SysUserRole condition = new SysUserRole();
 		condition.setUserId(userDto.getUserId());
-		sysUserRoleService.delete(new EntityWrapper<>(condition));
+		sysUserRoleService.remove(new QueryWrapper<>(condition));
 		userDto.getRole().forEach(new Consumer<Integer>() {
 			@Override
 			public void accept(Integer roleId) {

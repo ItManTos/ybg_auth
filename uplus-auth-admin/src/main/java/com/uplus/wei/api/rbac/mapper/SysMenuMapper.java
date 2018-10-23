@@ -23,7 +23,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Select;
 
-import com.baomidou.mybatisplus.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.uplus.wei.api.rbac.entity.SysMenu;
 import com.uplus.wei.api.rbac.vo.MenuVO;
 
@@ -37,25 +37,21 @@ import com.uplus.wei.api.rbac.vo.MenuVO;
  */
 public interface SysMenuMapper extends BaseMapper<SysMenu> {
 
-    /**
-     * 通过角色编号查询菜单
-     *
-     * @param role
-     *            角色编号
-     * @return
-     */
-    @Select("SELECT sys_menu.* FROM sys_role LEFT JOIN sys_role_menu ON sys_role_menu.role_id = sys_role.role_id LEFT JOIN sys_menu ON sys_menu.menu_id = sys_role_menu.menu_id WHERE (sys_role.del_flag = 0 AND sys_menu.del_flag = 0 AND sys_role.role_code = #{role}) ORDER BY sys_menu.sort DESC")
-    List<MenuVO> findMenuByRoleCode(
-            String role);
+	/**
+	 * 通过角色编号查询菜单
+	 *
+	 * @param role 角色编号
+	 * @return
+	 */
+	@Select("SELECT sys_menu.* FROM sys_role LEFT JOIN sys_role_menu ON sys_role_menu.role_id = sys_role.role_id LEFT JOIN sys_menu ON sys_menu.menu_id = sys_role_menu.menu_id WHERE (sys_role.del_flag = 0 AND sys_menu.del_flag = 0 AND sys_role.role_code = #{role}) ORDER BY sys_menu.sort DESC")
+	List<MenuVO> findMenuByRoleCode(String role);
 
-    /**
-     * 通过角色ID查询权限
-     *
-     * @param roleIds
-     *            Ids
-     * @return
-     */
-    @Select("SELECT m.permission FROM sys_menu m, sys_role_menu rm WHERE (m.menu_id = rm.menu_id AND m.del_flag = 0 AND rm.role_id IN (#{roleIds}))")
-    List<String> findPermissionsByRoleIds(
-            String roleIds);
+	/**
+	 * 通过角色ID查询权限
+	 *
+	 * @param roleIds Ids
+	 * @return
+	 */
+	@Select("SELECT m.permission FROM sys_menu m, sys_role_menu rm WHERE (m.menu_id = rm.menu_id AND m.del_flag = 0 AND rm.role_id IN (#{roleIds}))")
+	List<String> findPermissionsByRoleIds(String roleIds);
 }

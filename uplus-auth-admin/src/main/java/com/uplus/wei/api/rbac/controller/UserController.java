@@ -38,7 +38,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.baomidou.mybatisplus.plugins.Page;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.uplus.wei.api.rbac.dto.UserDTO;
 import com.uplus.wei.api.rbac.dto.UserInfo;
 import com.uplus.wei.api.rbac.entity.SysUser;
@@ -123,7 +123,7 @@ public class UserController {
 		BeanUtils.copyProperties(userDto, sysUser);
 		sysUser.setDelFlag(CommonConstant.STATUS_NORMAL);
 		sysUser.setPassword(ENCODER.encode(userDto.getNewpassword1()));
-		userService.insert(sysUser);
+		userService.save(sysUser);
 
 		userDto.getRole().forEach(new Consumer<Integer>() {
 			@Override
@@ -148,7 +148,7 @@ public class UserController {
 	@ApiOperation(value = "删除用户", notes = "根据ID删除用户")
 	@ApiImplicitParam(name = "id", value = "用户ID", required = true, dataType = "int", paramType = "path", example = "1000")
 	public R<Boolean> userDel(@PathVariable Integer id) {
-		SysUser sysUser = userService.selectById(id);
+		SysUser sysUser = userService.getById(id);
 		return new R<>(userService.deleteUserById(sysUser));
 	}
 
@@ -172,7 +172,7 @@ public class UserController {
 	@PutMapping
 	@PreAuthorize("@pms.hasPermission('sys_user_edit')")
 	public R<Boolean> userUpdate(@RequestBody UserDTO userDto) {
-		SysUser user = userService.selectById(userDto.getUserId());
+		SysUser user = userService.getById(userDto.getUserId());
 		return new R<>(userService.updateUser(userDto, user.getUsername()));
 	}
 }

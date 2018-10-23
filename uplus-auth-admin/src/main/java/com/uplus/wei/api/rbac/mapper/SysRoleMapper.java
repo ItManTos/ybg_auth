@@ -24,7 +24,7 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Select;
 
-import com.baomidou.mybatisplus.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.uplus.wei.api.rbac.entity.SysRole;
 import com.uplus.wei.util.Query;
 

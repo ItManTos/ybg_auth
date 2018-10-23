@@ -33,8 +33,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.baomidou.mybatisplus.plugins.Page;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.uplus.wei.api.rbac.entity.OauthClientDetails;
 import com.uplus.wei.api.rbac.service.OauthClientDetailsService;
 import com.uplus.wei.util.Query;
@@ -63,7 +63,7 @@ public class OauthClientDetailsController {
 	@PostMapping
 	@PreAuthorize("@pms.hasPermission('sys_client_add')")
 	public R<Boolean> add(@RequestBody OauthClientDetails OauthClientDetails) {
-		return new R<>(OauthClientDetailsService.insert(OauthClientDetails));
+		return new R<>(OauthClientDetailsService.save(OauthClientDetails));
 	}
 
 	/**
@@ -77,7 +77,7 @@ public class OauthClientDetailsController {
 	public R<Boolean> delete(@PathVariable String id) {
 		OauthClientDetails OauthClientDetails = new OauthClientDetails();
 		OauthClientDetails.setClientId(id);
-		return new R<>(OauthClientDetailsService.deleteById(OauthClientDetails));
+		return new R<>(OauthClientDetailsService.removeById(OauthClientDetails));
 	}
 
 	/**
@@ -100,7 +100,7 @@ public class OauthClientDetailsController {
 	 */
 	@GetMapping("/{id}")
 	public OauthClientDetails get(@PathVariable Integer id) {
-		return OauthClientDetailsService.selectById(id);
+		return OauthClientDetailsService.getById(id);
 	}
 
 	/**
@@ -110,7 +110,7 @@ public class OauthClientDetailsController {
 	 * @return 分页对象
 	 */
 	@RequestMapping("/page")
-	public Page page(@RequestParam Map<String, Object> params) {
-		return OauthClientDetailsService.selectPage(new Query<>(params), new EntityWrapper<>());
+	public IPage page(@RequestParam Map<String, Object> params) {
+		return OauthClientDetailsService.page(new Query<>(params), new QueryWrapper<>());
 	}
 }

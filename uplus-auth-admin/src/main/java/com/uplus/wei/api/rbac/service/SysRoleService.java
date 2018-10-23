@@ -21,9 +21,9 @@ package com.uplus.wei.api.rbac.service;
 
 import java.util.List;
 
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.baomidou.mybatisplus.plugins.Page;
-import com.baomidou.mybatisplus.service.IService;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.uplus.wei.api.rbac.dto.RoleDTO;
 import com.uplus.wei.api.rbac.entity.SysRole;
 import com.uplus.wei.util.Query;
@@ -38,45 +38,37 @@ import com.uplus.wei.util.Query;
  */
 public interface SysRoleService extends IService<SysRole> {
 
-    /**
-     * 通过用户ID，查询角色信息
-     *
-     * @param userId
-     * @return
-     */
-    List<SysRole> findRolesByUserId(
-            Integer userId);
+	/**
+	 * 通过用户ID，查询角色信息
+	 *
+	 * @param userId
+	 * @return
+	 */
+	List<SysRole> findRolesByUserId(Integer userId);
 
-    /**
-     * 添加角色
-     *
-     * @param roleDto
-     *            角色信息
-     * @return 成功、失败
-     */
-    Boolean insertRole(
-            RoleDTO roleDto);
+	/**
+	 * 添加角色
+	 *
+	 * @param roleDto 角色信息
+	 * @return 成功、失败
+	 */
+	Boolean insertRole(RoleDTO roleDto);
 
-    /**
-     * 分页查角色列表
-     *
-     * @param objectQuery
-     *            查询条件
-     * @param objectEntityWrapper
-     *            wapper
-     * @return page
-     */
-    Page selectwithDeptPage(
-            Query<com.uplus.wei.api.rbac.dto.RoleDTO> objectQuery,
-            EntityWrapper<com.uplus.wei.api.rbac.dto.RoleDTO> objectEntityWrapper);
+	/**
+	 * 分页查角色列表
+	 *
+	 * @param objectQuery         查询条件
+	 * @param objectEntityWrapper wapper
+	 * @return page
+	 */
+	Page selectwithDeptPage(Query<com.uplus.wei.api.rbac.dto.RoleDTO> objectQuery,
+			QueryWrapper<com.uplus.wei.api.rbac.dto.RoleDTO> objectEntityWrapper);
 
-    /**
-     * 更新角色
-     *
-     * @param roleDto
-     *            含有部门信息
-     * @return 成功、失败
-     */
-    Boolean updateRoleById(
-            RoleDTO roleDto);
+	/**
+	 * 更新角色
+	 *
+	 * @param roleDto 含有部门信息
+	 * @return 成功、失败
+	 */
+	Boolean updateRoleById(RoleDTO roleDto);
 }
