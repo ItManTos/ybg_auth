@@ -19,69 +19,164 @@
 
 package com.uplus.wei.api.rbac.vo;
 
-import com.uplus.wei.api.rbac.entity.SysRole;
-import lombok.Data;
-
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
+
+import com.uplus.wei.api.rbac.entity.SysRole;
 
 /**
  * @author lengleng
  * @date 2017/10/29
  */
-@Data
 public class UserVO implements Serializable {
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    /**
-     * 主键ID
-     */
-    private Integer userId;
-    /**
-     * 用户名
-     */
-    private String username;
-    /**
-     * 密码
-     */
-    private String password;
-    /**
-     * 随机盐
-     */
-    private String salt;
-    /**
-     * 创建时间
-     */
-    private LocalDateTime createTime;
-    /**
-     * 修改时间
-     */
-    private LocalDateTime updateTime;
-    /**
-     * 0-正常，1-删除
-     */
-    private String delFlag;
-    /**
-     * 简介
-     */
-    private String phone;
-    /**
-     * 头像
-     */
-    private String avatar;
+	/**
+	 * 头像
+	 */
+	private String avatar;
+	/**
+	 * 创建时间
+	 */
+	private LocalDateTime createTime;
+	/**
+	 * 0-正常，1-删除
+	 */
+	private String delFlag;
+	/**
+	 * 部门ID
+	 */
+	private Integer deptId;
+	/**
+	 * 部门名称
+	 */
+	private String deptName;
+	/**
+	 * 密码
+	 */
+	private String password;
+	/**
+	 * 简介
+	 */
+	private String phone;
+	/**
+	 * 角色列表
+	 */
+	private List<SysRole> roleList;
+	/**
+	 * 随机盐
+	 */
+	private String salt;
 
-    /**
-     * 部门ID
-     */
-    private Integer deptId;
-    /**
-     * 部门名称
-     */
-    private String deptName;
+	/**
+	 * 修改时间
+	 */
+	private LocalDateTime updateTime;
+	/**
+	 * 主键ID
+	 */
+	private Integer userId;
 
-    /**
-     * 角色列表
-     */
-    private List<SysRole> roleList;
+	/**
+	 * 用户名
+	 */
+	private String username;
+
+	public String getAvatar() {
+		return avatar;
+	}
+
+	public LocalDateTime getCreateTime() {
+		return createTime;
+	}
+
+	public String getDelFlag() {
+		return delFlag;
+	}
+
+	public Integer getDeptId() {
+		return deptId;
+	}
+
+	public String getDeptName() {
+		return deptName;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public List<SysRole> getRoleList() {
+		return roleList;
+	}
+
+	public String getSalt() {
+		return salt;
+	}
+
+	public LocalDateTime getUpdateTime() {
+		return updateTime;
+	}
+
+	public Integer getUserId() {
+		return userId;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
+	}
+
+	public void setCreateTime(LocalDateTime createTime) {
+		this.createTime = createTime;
+	}
+
+	public void setDelFlag(String delFlag) {
+		this.delFlag = delFlag;
+	}
+
+	public void setDeptId(Integer deptId) {
+		this.deptId = deptId;
+	}
+
+	public void setDeptName(String deptName) {
+		this.deptName = deptName;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public void setRoleList(List<SysRole> roleList) {
+		this.roleList = roleList;
+	}
+
+	public void setSalt(String salt) {
+		this.salt = salt;
+	}
+
+	public void setUpdateTime(LocalDateTime updateTime) {
+		this.updateTime = updateTime;
+	}
+
+	public void setUserId(Integer userId) {
+		this.userId = userId;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
 }

@@ -22,8 +22,6 @@ package com.uplus.wei.api.rbac.vo;
 import java.io.Serializable;
 import java.util.Date;
 
-import lombok.Data;
-
 /**
  * <p>
  * 菜单权限表
@@ -32,7 +30,7 @@ import lombok.Data;
  * @author lengleng
  * @since 2017-11-08
  */
-@Data
+
 public class MenuVO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -101,8 +99,105 @@ public class MenuVO implements Serializable {
 		return super.equals(obj);
 	}
 
+	public String getComponent() {
+		return component;
+	}
+
+	public Date getCreateTime() {
+		return createTime;
+	}
+
+	public String getDelFlag() {
+		return delFlag;
+	}
+
+	public String getIcon() {
+		return icon;
+	}
+
+	public Integer getMenuId() {
+		return menuId;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public Integer getParentId() {
+		return parentId;
+	}
+
+	public String getPath() {
+		return path;
+	}
+
+	public String getPermission() {
+		return permission;
+	}
+
+	public Integer getSort() {
+		return sort;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public Date getUpdateTime() {
+		return updateTime;
+	}
+
 	@Override
 	public int hashCode() {
 		return menuId.hashCode();
 	}
+
+	public void setComponent(String component) {
+		this.component = component;
+	}
+
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+
+	public void setDelFlag(String delFlag) {
+		this.delFlag = delFlag;
+	}
+
+	public void setIcon(String icon) {
+		this.icon = icon;
+	}
+
+	public void setMenuId(Integer menuId) {
+		this.menuId = menuId;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setParentId(Integer parentId) {
+		this.parentId = parentId;
+	}
+
+	public void setPath(String path) {
+		this.path = path;
+	}
+
+	public void setPermission(String permission) {
+		this.permission = permission;
+	}
+
+	public void setSort(Integer sort) {
+		this.sort = sort;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
+	}
+
 }
