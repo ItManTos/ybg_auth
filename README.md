@@ -3,8 +3,9 @@
 #### 项目介绍
 
 基于开源的pig框架进行改造，使用springboot2+mybtis plus3 开发。入手难度：2年以上开发经验
-| pig     | ybg_auth| 
-| ---------   | ----- | 
+
+| pig | ybg_auth| 
+| --------- | ----- | 
 | spring cloud1.X|  springboot2 | 
 | 有mq消息|  无mq功能 |
 | 整个项目运行项目内存较大(大于10G)|  内存开销很小 |
