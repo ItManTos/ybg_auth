@@ -33,13 +33,33 @@ ybg_auth_adminUI node.js项目搭建的用户角色权限管理前端，默认�
 7. python
 8. node.js
 
+
 #### 部署环境
-1. maven 3.3.9+
-2. jdk8
-3. redis 
-4. mysql5.7 
-5. jenkins
-6. nginx
+|部署环境|
+|--------|
+|maven 3.3.9+|
+| jdk8|
+| redis |
+|mysql5.7 |
+| jenkins|
+| nginx|
+
+
+
+
+| 技术选型      | 版本 |  描述 |
+| ---------   | ----- | ----- |
+| springboot   |2.0.4  | |
+| redis|  | |
+| spring security oauth2|  | |
+| mybatis plus| 3.0.6 | |
+| kaptche|   | 验证码|
+| maven      |  3.3.9 | |
+| jdk       |  8 | |
+| vue前端脚手架 |  2 | |
+| swagger |  2 | 在线文档 |
+
+
 
 ### 安装教程
 
