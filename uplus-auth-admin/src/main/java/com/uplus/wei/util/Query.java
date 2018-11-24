@@ -33,7 +33,7 @@ public class Query<T> extends Page<T> {
 	public static final String LIMIT = "limit";
 	public static final String ORDER_BY_FIELD = "orderByField";
 	public static final String PAGE = "page";
-	Map<String, Object> condition;
+	private Map<String, Object> condition;
 
 	@Deprecated
 	public Query() {
@@ -57,6 +57,7 @@ public class Query<T> extends Page<T> {
 			} else {
 				setDesc(orderByField);
 			}
+
 		}
 
 		params.remove(PAGE);
@@ -83,6 +84,7 @@ public class Query<T> extends Page<T> {
 			} else {
 				setDesc(orderByField);
 			}
+
 		}
 
 		params.remove(PAGE);

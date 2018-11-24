@@ -22,7 +22,6 @@ import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.ResourceServerTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
-import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
 import org.springframework.security.web.util.matcher.RequestMatcher;
 
 /***
@@ -127,8 +126,7 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
 	@Bean
 	public TokenStore tokenStore() {
 		// TokenStore tokenStore = new JwtTokenStore(accessTokenConverter());
-		TokenStore tokenStore = new RedisTokenStore(connectionFactory);
-
+		TokenStore tokenStore = new MyRedisTokenStore(connectionFactory);
 		return tokenStore;
 	}
 }

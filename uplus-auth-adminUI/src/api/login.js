@@ -20,11 +20,11 @@ export const loginByUsername = (username, password, code, randomStr) => {
   var scope = 'read'
   console.log(password)
   return request({
-      url: '/uplus_auth/oauth/token',
-      headers: {
-        // dHJ1c3RlZC1hcHAlM0FzZWNyZXQ= dHJ1c3RlZC1hcHA=
-          'Authorization': 'Basic dHJ1c3RlZC1hcHA6c2VjcmV0'//用base64加密
-        },
+      url: '/uplus_admin/login/loginIn',
+      // headers: {
+      //   // dHJ1c3RlZC1hcHAlM0FzZWNyZXQ= dHJ1c3RlZC1hcHA=
+      //     'Authorization': 'Basic dHJ1c3RlZC1hcHA6c2VjcmV0'//用base64加密
+      //   },
       method: 'post',
       params: { username, password, randomStr, code, grant_type, scope }
     })
@@ -39,7 +39,7 @@ export const getUserInfo = () => {
 
 export const logout = () => {
   return request({
-      url: '/uplus_auth/oauth/removeToken',
+      url: '/uplus_auth/loginOut',
       method: 'get'
     })
 }

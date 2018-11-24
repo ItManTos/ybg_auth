@@ -35,7 +35,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.uplus.wei.api.rbac.dto.RoleDTO;
 import com.uplus.wei.api.rbac.entity.SysRole;
 import com.uplus.wei.api.rbac.service.SysRoleMenuService;
@@ -123,7 +123,7 @@ public class RoleController {
 	 * @return 分页对象
 	 */
 	@RequestMapping("/rolePage")
-	public Page rolePage(@RequestParam Map<String, Object> params) {
+	public IPage rolePage(@RequestParam Map<String, Object> params) {
 		params.put(CommonConstant.DEL_FLAG, CommonConstant.STATUS_NORMAL);
 		return sysRoleService.selectwithDeptPage(new Query<>(params), new QueryWrapper<>());
 	}

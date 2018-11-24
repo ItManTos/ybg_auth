@@ -64,7 +64,7 @@
             <span class="login-code-img"
                   @click="refreshCode"
                   v-if="code.type == 'text'">{{code.value}}</span>
-            <img :src="code.src"
+            <img src="/uplus_admin/login/code" id='refreshCode'
                  alt="验证码"
                  class="login-code-img"
                  @click="refreshCode"
@@ -106,7 +106,7 @@ export default {
         randomStr: ''
       },
       code: {
-        src: '/code',
+        src: '/uplus_admin/login/code',
         value: '',
         len: 4,
         type: 'image'
@@ -134,11 +134,8 @@ export default {
   props: [],
   methods: {
     refreshCode() {
-      this.loginForm.code = ''
-      this.loginForm.randomStr = randomLenNum(this.code.len, true)
-      this.code.type === 'text'
-        ? (this.code.value = randomLenNum(this.code.len))
-        : (this.code.src = `${this.codeUrl}?randomStr=${this.loginForm.randomStr}`)
+      document.getElementById('refreshCode').src='/uplus_admin/login/code?v='+ new Date()
+     
     },
     showPassword() {
       this.passwordType == ''

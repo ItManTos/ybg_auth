@@ -36,7 +36,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.uplus.wei.api.rbac.dto.UserDTO;
 import com.uplus.wei.api.rbac.dto.UserInfo;
@@ -149,7 +149,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
 	}
 
 	@Override
-	public Page selectWithRolePage(Query query) {
+	public IPage selectWithRolePage(Query query) {
 		Object username = query.getCondition().get("username");
 		query.setRecords(sysUserMapper.selectUserVoPage(query, username));
 		return query;

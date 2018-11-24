@@ -38,7 +38,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.uplus.wei.api.rbac.dto.UserDTO;
 import com.uplus.wei.api.rbac.dto.UserInfo;
 import com.uplus.wei.api.rbac.entity.SysUser;
@@ -159,7 +159,7 @@ public class UserController {
 	 * @return 用户集合
 	 */
 	@RequestMapping("/userPage")
-	public Page userPage(@RequestParam Map<String, Object> params) {
+	public IPage userPage(@RequestParam Map<String, Object> params) {
 		return userService.selectWithRolePage(new Query(params));
 	}
 

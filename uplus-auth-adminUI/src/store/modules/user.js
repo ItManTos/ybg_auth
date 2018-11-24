@@ -75,7 +75,8 @@ const user = {
                 // })
                 
                 loginByUsername(userInfo.username, userInfo.password, userInfo.code, userInfo.randomStr).then(response => {
-                    const data = response.data
+                    const data = response.data.data
+                    console.log(data)
                     setToken(data.access_token)
                     commit('SET_ACCESS_TOKEN', data.access_token)
                     commit('SET_REFRESH_TOKEN', data.refresh_token)

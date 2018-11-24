@@ -24,7 +24,6 @@ import org.springframework.security.oauth2.provider.client.JdbcClientDetailsServ
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
-import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
 
 /**
  * 认证授权服务端
@@ -47,6 +46,9 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 	private AuthenticationManager authenticationManager;
 	@Autowired
 	RedisConnectionFactory connectionFactory;
+	/**
+	 * 连接池配置信息
+	 */
 
 	@Autowired
 	private DataSource dataSource;
@@ -94,18 +96,22 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 
 	@Override
 	public void configure(AuthorizationServerSecurityConfigurer oauthServer) throws Exception {
-		oauthServer.tokenKeyAccess("isAnonymous() || hasAuthority('ROLE_TRUSTED_CLIENT')");
-		oauthServer.checkTokenAccess("hasAuthority('ROLE_TRUSTED_CLIENT')");
-		// 如果没有支持allowFormAuthenticationForClients或者有支持但是url中没有client_id和client_secret的，走basic认证保护
-		// https://blog.csdn.net/u012040869/article/details/80140515
-		oauthServer.allowFormAuthenticationForClients();
+//		oauthServer.tokenKeyAccess("permitAll()");
+//		oauthServer.checkTokenAccess("permitAll()");
+//		// 如果没有支持allowFormAuthenticationForClients或者有支持但是url中没有client_id和client_secret的，走basic认证保护
+//		// https://blog.csdn.net/u012040869/article/details/80140515
+//		oauthServer.allowFormAuthenticationForClients();
+		oauthServer.tokenKeyAccess("permitAll()").checkTokenAccess("isAuthenticated()") // isAuthenticated():排除anonymous
+																						// isFullyAuthenticated():排除anonymous以及remember-me
+				.allowFormAuthenticationForClients(); // 允许表单认证
 
 	}
 
 	@Override
 	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
 
-		// 默认明文，不加密 ，应该改造 加个缓存 不然数据库读取太多！
+		// 默认的密码策略使用你注册的，springboot1版本是用明文，和springboot2不一样，当前系统默认是MD5加密校验注册到springbeen中，所以
+		// 这里也是md5
 		ClientDetailsService clientDetailsService = new JdbcClientDetailsService(dataSource);
 
 		clients.withClientDetails(clientDetailsService);
@@ -133,7 +139,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 	public TokenStore tokenStore() {
 
 		// TokenStore tokenStore = new JwtTokenStore(accessTokenConverter());
-		TokenStore tokenStore = new RedisTokenStore(connectionFactory);
+		TokenStore tokenStore = new MyRedisTokenStore(connectionFactory);
 		return tokenStore;
 	}
 }

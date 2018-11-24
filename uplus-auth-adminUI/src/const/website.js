@@ -18,7 +18,7 @@
 export default {
   title: 'ybg_auth',
   logo: 'ybg_auth',
-  author: '微服务快速开发框架',
+  author: 'Deament',
   whiteList: ['/login', '/404', '/401', '/lock'],
   tokenTime: 6000,
   info: {

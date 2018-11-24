@@ -43,9 +43,6 @@ public class MybatisPlusConfig {
 	}
 
 	/**
-	 *
-	 *
-	 *
 	 * 注入sql注入器
 	 */
 	@Bean
