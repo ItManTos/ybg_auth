@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50718
 File Encoding         : 65001
 
-Date: 2018-10-06 18:57:29
+Date: 2018-11-24 22:33:24
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -55,8 +55,9 @@ CREATE TABLE `oauth_client_details` (
 -- ----------------------------
 -- Records of oauth_client_details
 -- ----------------------------
-INSERT INTO `oauth_client_details` VALUES ('normal-app', 'spring-boot-application', 'normal-app', 'read, write', 'authorization_code,refresh_token,password', '', 'ROLE_TRUSTED_CLIENT', '3600', null, null, '1');
-INSERT INTO `oauth_client_details` VALUES ('trusted-app', 'spring-boot-application', 'secret', 'read, write', 'client_credentials,password', 'http://localhost:8084/web/login', 'ROLE_TRUSTED_CLIENT', '3600', null, null, '1');
+INSERT INTO `oauth_client_details` VALUES ('normal-app', 'spring-boot-application', 'normal-app', 'read, write', 'client_credentials,password,refresh_token,authorization_code', '', 'ROLE_TRUSTED_CLIENT', '3600', null, null, '1');
+INSERT INTO `oauth_client_details` VALUES ('normal-app2', 'spring-boot-application', 'e10adc3949ba59abbe56e057f20f883e', 'read, write', 'client_credentials,password,refresh_token,authorization_code', '', 'ROLE_TRUSTED_CLIENT', '3600', null, '', '1');
+INSERT INTO `oauth_client_details` VALUES ('trusted-app', 'spring-boot-application', 'secret', 'read, write', 'client_credentials,password,refresh_token,authorization_code', 'http://localhost:8084/web/login', 'ROLE_TRUSTED_CLIENT', '3600', null, null, '1');
 INSERT INTO `oauth_client_details` VALUES ('youjiahulian', 'spring-boot-application', 'youjiahulian', 'read, write', 'authorization_code,refresh_token', 'http://localhost:8084/web/login', 'ROLE_CLIENT', '3600', null, null, '1');
 
 -- ----------------------------
@@ -259,7 +260,7 @@ CREATE TABLE `sys_role` (
   `del_flag` char(1) COLLATE utf8mb4_bin DEFAULT '0' COMMENT '删除标识（0-正常,1-删除）',
   PRIMARY KEY (`role_id`),
   UNIQUE KEY `role_idx1_role_code` (`role_code`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin ROW_FORMAT=DYNAMIC COMMENT='角色表';
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin ROW_FORMAT=DYNAMIC COMMENT='角色表';
 
 -- ----------------------------
 -- Records of sys_role
@@ -267,6 +268,7 @@ CREATE TABLE `sys_role` (
 INSERT INTO `sys_role` VALUES ('1', 'admin', 'ROLE_ADMIN', '超级管理员', '2017-10-29 15:45:51', '2018-04-22 11:40:29', '0');
 INSERT INTO `sys_role` VALUES ('2', 'wei_branch_manager', 'ROLE_WEI', '微平台网点管理员', '2018-06-23 14:14:56', '2018-08-18 08:11:50', '0');
 INSERT INTO `sys_role` VALUES ('14', 'demo', 'ROLE_GUEST', 'demo用户', '2018-04-20 07:14:32', '2018-08-18 08:11:56', '0');
+INSERT INTO `sys_role` VALUES ('15', '312', '1111', '222222222222', '2018-11-20 00:29:56', null, '0');
 
 -- ----------------------------
 -- Table structure for sys_role_dept
@@ -367,6 +369,9 @@ INSERT INTO `sys_role_menu` VALUES ('14', '41');
 INSERT INTO `sys_role_menu` VALUES ('14', '51');
 INSERT INTO `sys_role_menu` VALUES ('14', '61');
 INSERT INTO `sys_role_menu` VALUES ('14', '71');
+INSERT INTO `sys_role_menu` VALUES ('15', '31');
+INSERT INTO `sys_role_menu` VALUES ('15', '32');
+INSERT INTO `sys_role_menu` VALUES ('15', '33');
 
 -- ----------------------------
 -- Table structure for sys_user
@@ -391,9 +396,9 @@ CREATE TABLE `sys_user` (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES ('1', 'admin', '8af08cf84dbc2c90290d69f9d20f2941', null, '17034642111', null, '1', '2018-04-20 07:15:18', '2018-10-06 18:51:59', '0');
+INSERT INTO `sys_user` VALUES ('1', 'admin', 'e10adc3949ba59abbe56e057f20f883e', null, '17034642111', null, '1', '2018-04-20 07:15:18', '2018-10-06 19:09:08', '0');
 INSERT INTO `sys_user` VALUES ('4', 'pig', '8af08cf84dbc2c90290d69f9d20f2941', null, '17034642118', null, '1', '2018-04-22 11:39:07', '2018-10-06 18:52:09', '0');
-INSERT INTO `sys_user` VALUES ('268', 'youjia', '8af08cf84dbc2c90290d69f9d20f2941', null, '17034642116', null, null, '2018-08-19 14:51:19', '2018-10-06 18:52:02', '0');
+INSERT INTO `sys_user` VALUES ('268', 'youjia', 'e10adc3949ba59abbe56e057f20f883e', null, '17034642116', null, null, '2018-08-19 14:51:19', '2018-11-23 08:55:58', '0');
 
 -- ----------------------------
 -- Table structure for sys_user_role
