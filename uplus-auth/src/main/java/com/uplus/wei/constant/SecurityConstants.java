@@ -29,5 +29,14 @@ public interface SecurityConstants {
 	String ROLE_LOGIN_USER = "ROLE_LOGIN";
 	/** 匿名角色 */
 	String ROLE_ANONYMOUS = "ROLE_ANONYMOUS";
+	/**
+	 * 内部
+	 */
+	String FROM_IN = "Y";
+
+	/**
+	 * 角色前缀
+	 */
+	String ROLE = "ROLE_";
 
 }

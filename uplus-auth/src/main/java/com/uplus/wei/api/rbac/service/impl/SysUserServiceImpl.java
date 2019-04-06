@@ -26,6 +26,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.function.Consumer;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
@@ -144,15 +145,20 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
 	 */
 	@Override
 	public UserVO selectUserVoById(Integer id) {
-		return sysUserMapper.selectUserVoById(id);
+		UserVO vo= sysUserMapper.selectUserVoById(id);
+		vo.setRoleList(sysRoleService.findRolesByUserId(id));
+		return vo;
 	}
 
 	@Override
-	public Page<com.uplus.wei.api.rbac.vo.UserVO> selectWithRolePage(Query<com.uplus.wei.api.rbac.vo.UserVO> query,
-			String userName) {
+	public IPage selectWithRolePage(Page page,
+									String userName) {
+		QueryWrapper userWrapper=	new QueryWrapper<>();
+		if(StrUtil.isNotBlank(userName)){
+			userWrapper.like(SysUser.USERNAME,userName);
+		}
+	return 	this.page(page,userWrapper);
 
-		query.setRecords(sysUserMapper.selectUserVoPage(query, userName));
-		return query;
 	}
 
 	@Override

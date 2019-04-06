@@ -19,6 +19,7 @@
 
 package com.uplus.wei.api.rbac.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.uplus.wei.api.rbac.dto.Query;
@@ -59,13 +60,13 @@ public interface SysUserService extends IService<SysUser> {
 	/**
 	 * 分页查询用户信息（含有角色信息）
 	 *
-	 * @param query    查询条件
+	 * @param page    查询条件
 	 *
 	 * @param userName
 	 * @return
 	 */
-	Page<com.uplus.wei.api.rbac.vo.UserVO> selectWithRolePage(Query<com.uplus.wei.api.rbac.vo.UserVO> query,
-			String userName);
+	IPage selectWithRolePage(Page page,
+							 String userName);
 
 	/**
 	 * 更新指定用户信息

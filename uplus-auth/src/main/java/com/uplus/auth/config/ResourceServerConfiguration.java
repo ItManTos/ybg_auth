@@ -1,55 +1,128 @@
 package com.uplus.auth.config;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;
+import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
+import org.springframework.security.oauth2.provider.OAuth2Authentication;
+import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
+import org.springframework.security.oauth2.provider.token.ResourceServerTokenServices;
+import org.springframework.security.oauth2.provider.token.TokenStore;
+import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.web.util.matcher.RequestMatcher;
 
 @Configuration
 @EnableResourceServer
 public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter {
-    
-    @Value("${resource.id:spring-boot-application}")
-    private String resourceId;
-    
-    @Override
-    public void configure(ResourceServerSecurityConfigurer resources) {
-        // @formatter:off
-    	
-        resources.resourceId(resourceId);
-        // @formatter:on
-    }
 
-    @Override
-    public void configure(HttpSecurity http) throws Exception {
-        // @formatter:off
-        	http.requestMatcher(new OAuth2RequestedMatcher())
-                .authorizeRequests()
-                	.antMatchers(HttpMethod.OPTIONS).permitAll()
-                	.anyRequest().authenticated();
-        // @formatter:on
-    }
-    
-    /**
-     * 定义一个oauth2的请求匹配器
-     * @author leftso
-     *
-     */
-    private static class OAuth2RequestedMatcher implements RequestMatcher {
-        @Override
-    	public boolean matches(HttpServletRequest request) {
-            String auth = request.getHeader("Authorization");
-            //判断来源请求是否包含oauth2授权信息,这里授权信息来源可能是头部的Authorization值以Bearer开头,或者是请求参数中包含access_token参数,满足其中一个则匹配成功
-            boolean haveOauth2Token = (auth != null) && auth.startsWith("Bearer");
-            boolean haveAccessToken = request.getParameter("access_token")!=null;
+	private static class OAuthRequestedMatcher implements RequestMatcher {
+		@Override
+		public boolean matches(HttpServletRequest request) {
+			String auth = request.getHeader("Authorization");
+			// Determine if the client request contained an OAuth Authorization
+			boolean haveOauth2Token = (auth != null) && auth.startsWith("Bearer");
+			boolean haveAccessToken = request.getParameter("access_token") != null;
 			return haveOauth2Token || haveAccessToken;
-        }
-    }
+		}
+	}
+
+	@Autowired
+	private RedisConnectionFactory connectionFactory;
+	@Value("${resource.id:spring-boot-application}")
+	private String resourceId;
+
+	/**
+	 * Token转换器必须与认证服务一致
+	 *
+	 * @return
+	 */
+	@Bean
+	public JwtAccessTokenConverter accessTokenConverter() {
+		JwtAccessTokenConverter accessTokenConverter = new JwtAccessTokenConverter() {
+			/***
+			 * 重写增强token方法,用于自定义一些token返回的信息
+			 */
+			@Override
+			public OAuth2AccessToken enhance(OAuth2AccessToken accessToken, OAuth2Authentication authentication) {
+				// String userName = authentication.getUserAuthentication().getName();
+				// 与登录时候放进去的UserDetail实现类一直查看link{SecurityConfiguration}
+
+				// /** 自定义一些token属性 ***/
+				final Map<String, Object> additionalInformation = new HashMap<>();
+				//
+				// additionalInformation.put("user",
+				// authentication.getUserAuthentication().getPrincipal());
+				// additionalInformation.put("userName", userName);
+				// additionalInformation.put("roles", user.getAuthorities());
+				((DefaultOAuth2AccessToken) accessToken).setAdditionalInformation(additionalInformation);
+				OAuth2AccessToken enhancedToken = super.enhance(accessToken, authentication);
+				return enhancedToken;
+			}
+
+		};
+		accessTokenConverter.setSigningKey("123");// 测试用,资源服务使用相同的字符达到一个对称加密的效果,生产时候使用RSA非对称加密方式
+		return accessTokenConverter;
+	}
+
+	@Override
+	public void configure(HttpSecurity http) throws Exception {
+		// @formatter:off
+		http.requestMatcher(new OAuthRequestedMatcher()).authorizeRequests().antMatchers(HttpMethod.OPTIONS).permitAll()
+				.anyRequest().authenticated();
+		// @formatter:on
+	}
+
+	//
+	// ===================================================以下代码与认证服务器一致=========================================
+
+	@Override
+	public void configure(ResourceServerSecurityConfigurer resources) {
+		// @formatter:off
+		resources.resourceId(resourceId);
+		resources.tokenServices(defaultTokenServices());
+
+		// @formatter:on
+	}
+
+	/**
+	 * 创建一个默认的资源服务token
+	 *
+	 * @return
+	 */
+	@Bean
+	public ResourceServerTokenServices defaultTokenServices() {
+		final DefaultTokenServices defaultTokenServices = new DefaultTokenServices();
+		// defaultTokenServices.setTokenEnhancer(accessTokenConverter());
+		defaultTokenServices.setTokenStore(tokenStore());
+		return defaultTokenServices;
+	}
+	//
+	// ===================================================以上代码与认证服务器一致=========================================
+
+	/**
+	 * token存储,这里使用jwt方式存储
+	 *
+	 * @param accessTokenConverter
+	 * @return
+	 */
+	@Bean
+	public TokenStore tokenStore() {
+		// TokenStore tokenStore = new JwtTokenStore(accessTokenConverter());
+		TokenStore tokenStore = new MyRedisTokenStore(connectionFactory);
+		return tokenStore;
+	}
 
 }

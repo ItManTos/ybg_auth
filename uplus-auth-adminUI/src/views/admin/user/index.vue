@@ -72,7 +72,7 @@
           <template slot-scope="scope">
             <span>{{scope.row.deptName}} </span>
           </template>
-        </el-table-column> -->
+        </el-table-column> 
 
         <el-table-column align="center"
                          label="角色">
@@ -80,6 +80,7 @@
             <span v-for="role in scope.row.roleList">{{role.roleDesc}} </span>
           </template>
         </el-table-column>
+		-->
 
         <el-table-column align="center"
                          label="创建时间">
@@ -386,8 +387,10 @@ export default {
         this.dialogFormVisible = true;
         this.dialogStatus = "update";
         this.role = [];
-        for (var i = 0; i < row.roleList.length; i++) {
-          this.role[i] = row.roleList[i].roleId;
+		 console.log(row)
+        for (var i = 0; i < response.data.roleList.length; i++) {
+          this.role[i] = response.data.roleList[i].roleId;
+		 
         }
        roleList().then(response => {
           this.rolesOptions = response.data;
