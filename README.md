@@ -2,39 +2,13 @@
 
 #### 项目介绍
 
-基于开源的pig框架进行改造，使用springboot2+mybtis plus3 开发。入手难度：2年以上开发经验
-
-| pig | ybg_auth| 
-| --------- | ----- | 
-| spring cloud1.X|  springboot2 | 
-| 有mq消息|  无mq功能 |
-| 整个项目运行项目内存较大(大于10G)|  内存开销很小 小于2G|
-| mybtis plus 2|  mybtis plus 3 |
-| 框架有负载均衡|  用nginx去控制 |
-| 难度较大|  难度较小 |
-
+基于开源的pig框架进行改造，使用springboot 开发。入手难度：2年以上开发经验
 #### 框架需求
 一般来说传统的springmvc足以应付各种各样的小系统。随着公司发展,又会开发其他系统，然后吧部分权限的代码、拷过来用，加上自己的逻辑又是一个新系统。但是又出现了一个新的问题，那就是权限和业务耦合的太严谨了，无法拆分旧的权限系统，自己又没能力去搭建一个权限系统或者重复搭建一个权限系统是一个十分麻烦的事情，又要用以前的系统账号等复杂因素，本框架就由此产生。
 采用标准oauth2开发。实现权限和业务相分离。一个点点配置 便可控制业务权限。
 
-
-
-
-
 #### 软件架构
-
-| 技术选型      | 版本 |  描述 |
-| ---------   | ----- | ----- |
-| springboot   |2.0.4  | |
-| redis|  | |
-| spring security oauth2|  | |
-| mybatis plus| 3.0.6 | |
-| kaptche|   | 验证码|
-| maven      |  3.3.9 | |
-| jdk       |  8 | |
-| vue前端脚手架 |  2 | |
-| swagger |  2 | 在线文档 |
-| mysql|  5.7 |  |
+采用架构，springboot,springSecurityOauth2,redis,MybatisPlus,mysql,nodejs,vue-cli,elementUI .
 
 #### 目录说明
 ybg_auth 授权中心（授权服务器）
@@ -50,32 +24,22 @@ ybg_auth_adminUI node.js项目搭建的用户角色权限管理前端，默认�
 ![输入图片说明](https://images.gitee.com/uploads/images/2018/1006/212322_937ce663_880593.png "Untitled Diagram.png")
 
 #### 开发环境
-|开发环境|
-|--------|
-| eclipse 最近版|
-| maven 3.3.9+|
-| jdk8|
-| redis 和redis客户端（RedisDesktopManager）|
-| mysql5.7 以及navicat |
-| tortoise svn|
-| python|
-| node.js|
-
+1. eclipse 最近版
+2. maven 3.3.9+
+3. jdk8
+4. redis 和redis客户端（RedisDesktopManager）
+5. mysql5.7 以及navicat 
+6. tortoise svn
+7. python
+8. node.js
 
 #### 部署环境
-|部署环境|
-|--------|
-|maven 3.3.9+|
-| jdk8|
-| redis |
-|mysql5.7 |
-| jenkins|
-| nginx|
-
-
-
-
-
+1. maven 3.3.9+
+2. jdk8
+3. redis 
+4. mysql5.7 
+5. jenkins
+6. nginx
 
 ### 安装教程
 
@@ -112,6 +76,26 @@ ybg_auth_adminUI node.js项目搭建的用户角色权限管理前端，默认�
 ![输入图片说明](https://images.gitee.com/uploads/images/2018/1007/094404_4aceac98_880593.png "屏幕截图.png")
     先执行npm install命令
     执行完 再执行npm run dev 启动本地调试
+
+
+
+当前版本：4.1
+
+
+
+
+
+
+版本更变历史：
+
+ v4.1.0 2018年11月24日 更新spirngboot版本从 1.5.9 变成 springboot2,mybatis plus 2.3版本变成3.0.6 我认为把请求的客户端放在前端 是不安全的，所以本作者把请求用户信息的东西放在了资源服务器，
+ 资源服务器再去请求认证服务器去拿到access_token，保证系统的安全性。这是4.1版本重点的内容。另外 4.1版本使用的是springboot2 它和springboot1.5的oauth2对于密码的认证方式不一样。
+springboot 1.5.9请求需要客户端传递basic的请求头，而springboot2.0的方式不承认这种方式了 只能传clientId和clientSecret作为参数传给认证服务器。这是一个很大的坑，需要查找源码或者看资料才能知道。
+此外 springboot1.5的redis默认实现是jredis而2.0的不是。所以也是要改造才可以正常使用redis.更多细节请看代码提交记录。
+    
+
+
+
 
 #### 更多项目文档尽在wiki 或者 老项目中
 
