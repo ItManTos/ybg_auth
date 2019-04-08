@@ -11,13 +11,13 @@
 采用架构，springboot,springSecurityOauth2,redis,MybatisPlus,mysql,nodejs,vue-cli,elementUI .
 
 #### 目录说明
-ybg_auth 授权中心 （授权服务器,以及权限管理）
+ * ybg_auth 授权中心 （授权服务器,以及权限管理）
 
-~~- ybg_auth_admin  用户角色权限管理后端（相当于资源服务器）-~~（4.2版本已把功能迁移到授权中心）
+ * ~~- ybg_auth_admin  用户角色权限管理后端（相当于资源服务器）-~~（4.2版本已把功能迁移到授权中心）
 
-ybg_weixin 多微信号管理平台，集成了多微信订阅号，多微信公众号，多第三方开放平台，多小程序，多微信支付于一体的基本框架，支持根据公众号分表存储数据（只开发了粉丝管理和打标签的分表功能，企业可以自行定制功能是否分表）
+ * ybg_weixin 多微信号管理平台，集成了多微信订阅号，多微信公众号，多第三方开放平台，多小程序，多微信支付于一体的基本框架，支持根据公众号分表存储数据（只开发了粉丝管理和打标签的分表功能，企业可以自行定制功能是否分表）
 
-ybg_auth_adminUI node.js项目搭建的用户角色权限管理前端，默认端口8000
+ * ybg_auth_adminUI node.js项目搭建的用户角色权限管理前端，默认端口8000
 
 
 架构设计图
@@ -63,30 +63,25 @@ ybg_auth_adminUI node.js项目搭建的用户角色权限管理前端，默认�
 ![输入图片说明](https://images.gitee.com/uploads/images/2018/1007/091517_aec68b78_880593.png "屏幕截图.png")
 
 3. 启动ybg_auth项目
-    导入项目的方式参考 https://gitee.com/YYDeament/88ybg/wikis/Home
-    修改ybg_auth项目中的application-dev.properties 文件 修改数据库配置和你的redis配置
-    右键   /uplus-auth/src/main/java/com/uplus/AuthApplication.java    run as java application ,启动项目即可
+   - 导入项目的方式参考 https://gitee.com/YYDeament/88ybg/wikis/Home
+   - 修改ybg_auth项目中的application-dev.properties 文件 修改数据库配置和你的redis配置
+   - 右键   /uplus-auth/src/main/java/com/uplus/AuthApplication.java    run as java application ,启动项目即可
 
 4. ~~- 启动ybg_auth_admin项目 （项目已删除）-~~
-    导入项目的方式参考 https://gitee.com/YYDeament/88ybg/wikis/Home
-    修改ybg_auth_admin项目中的application-dev.properties 文件 修改数据库配置和你的redis配置
-    右键  /uplus-auth-admin/src/main/java/com/uplus/AuthAdminApplication.java    run as java application ,启动项目即可
+   ~~-  导入项目的方式参考 https://gitee.com/YYDeament/88ybg/wikis/Home -~~
+   ~~-  修改ybg_auth_admin项目中的application-dev.properties 文件 修改数据库配置和你的redis配置 -~~
+   ~~-  右键  /uplus-auth-admin/src/main/java/com/uplus/AuthAdminApplication.java    run as java application ,启动项目即可 -~~
 
 5. 启动ybg_auth_adminUI 
-    导入项目后，进入ybg_auth_adminUI 代码目录
-    shift+右键 如图所示 
+   - 导入项目后，进入ybg_auth_adminUI 代码目录
+   -  shift+右键 如图所示 
 ![输入图片说明](https://images.gitee.com/uploads/images/2018/1007/094404_4aceac98_880593.png "屏幕截图.png")
-    先执行npm install命令
-    执行完 再执行npm run dev 启动本地调试
+   -  输入 npm i 先执行npm install命令 (如果node版本(8以上)过高，需要安装最新版python)
+   -  执行完 输入 npm run dev 再执行npm run dev 启动本地调试
 
 
 
 ## 当前版本：4.2
-
-
-
-
-
 
 ## 版本更变历史：
  - v4.2.0 2019年4月6日 更新授权中心和认证中心合并成一个，不需要跑两个服务去管理权限。添加多微信管理平台基础版，各微信号支持分表存储数据。
@@ -97,15 +92,9 @@ springboot 1.5.9请求需要客户端传递basic的请求头，而springboot2.0�
 此外 springboot1.5的redis默认实现是jredis而2.0的不是。所以也是要改造才可以正常使用redis.更多细节请看代码提交记录。
     
 
-
-
-
 #### 更多项目文档尽在wiki 或者 老项目中
-
-https://gitee.com/SYDeament/ybg_auth/wikis/Home
-
-https://gitee.com/YYDeament/88ybg/wikis/Home
-
+ - https://gitee.com/SYDeament/ybg_auth/wikis/Home
+ - https://gitee.com/YYDeament/88ybg/wikis/Home
 
 #### QQ交流群：（女生或一个太阳以下拒绝加入）468054855
 
