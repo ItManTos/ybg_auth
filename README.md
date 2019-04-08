@@ -11,9 +11,9 @@
 采用架构，springboot,springSecurityOauth2,redis,MybatisPlus,mysql,nodejs,vue-cli,elementUI .
 
 #### 目录说明
-ybg_auth 授权中心（授权服务器）
+ybg_auth 授权中心 （授权服务器,以及权限管理）
 
-ybg_auth_admin 用户角色权限管理后端（相当于资源服务器）
+~~- ybg_auth_admin  用户角色权限管理后端（相当于资源服务器）-~~（4.2版本已把功能迁移到授权中心）
 
 ybg_auth_adminUI node.js项目搭建的用户角色权限管理前端，默认端口8000
 
@@ -45,7 +45,7 @@ ybg_auth_adminUI node.js项目搭建的用户角色权限管理前端，默认�
 
 1. 如何导入项目？参考 https://gitee.com/YYDeament/88ybg/wikis/Home
 2. 安装环境 redis node.js maven 等环境？ 请百度
-3. 启动顺序：ybg_auth ->  ybg_auth_admin  -> ybg_auth_adminUI 
+3. 启动顺序：ybg_auth ->  ~~- ybg_auth_admin （4.2版本已不需要）-~~  -> ybg_auth_adminUI 
 4. 开发项目页面：http://localhost:8000 
 
 ### 部署教程
@@ -65,7 +65,7 @@ ybg_auth_adminUI node.js项目搭建的用户角色权限管理前端，默认�
     修改ybg_auth项目中的application-dev.properties 文件 修改数据库配置和你的redis配置
     右键   /uplus-auth/src/main/java/com/uplus/AuthApplication.java    run as java application ,启动项目即可
 
-4. 启动ybg_auth_admin项目
+4. ~~- 启动ybg_auth_admin项目 （项目已删除）-~~
     导入项目的方式参考 https://gitee.com/YYDeament/88ybg/wikis/Home
     修改ybg_auth_admin项目中的application-dev.properties 文件 修改数据库配置和你的redis配置
     右键  /uplus-auth-admin/src/main/java/com/uplus/AuthAdminApplication.java    run as java application ,启动项目即可
