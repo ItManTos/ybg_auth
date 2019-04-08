@@ -1,6 +1,6 @@
 package com.uplus.auth.controller;
 
-import org.apache.catalina.servlet4preview.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.uplus.wei.util.CRequest;
+
+import javax.servlet.http.HttpServletRequest;
 
 /*** 跳转到登陆页（第三方的） **/
 @Controller

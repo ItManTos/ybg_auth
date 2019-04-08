@@ -5,7 +5,7 @@ import com.uplus.wei.api.weixin.entity.NjwhInfiniti;
 
 /**
  * <p>
- * Mapper 接口
+ * 微信公众号Mapper 接口
  * </p>
  *
  * @author yanyu

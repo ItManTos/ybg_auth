@@ -78,7 +78,6 @@ public class TestWxUserController {
 		} else {
 			wxUserService.update(entity, wrapper);
 		}
-
 	}
 
 	/***

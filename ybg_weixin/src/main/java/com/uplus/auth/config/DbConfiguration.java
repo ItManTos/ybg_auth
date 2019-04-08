@@ -36,7 +36,7 @@ public class DbConfiguration {
 		db.setUrl(url);
 		db.setUsername(username);
 		db.setPassword(password);
-		db.setDriverClassName("com.mysql.jdbc.Driver");
+		db.setDriverClassName("com.mysql.cj.jdbc.Driver");
 		db.setMaxActive(200);
 		db.setMinIdle(8);
 		ArrayList<String> connectionInitSqls = new ArrayList<String>();
