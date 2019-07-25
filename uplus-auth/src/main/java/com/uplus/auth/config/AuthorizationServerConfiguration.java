@@ -136,6 +136,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 	 * @return
 	 */
 	@Bean
+	@Primary
 	public TokenStore tokenStore() {
 
 		// TokenStore tokenStore = new JwtTokenStore(accessTokenConverter());
