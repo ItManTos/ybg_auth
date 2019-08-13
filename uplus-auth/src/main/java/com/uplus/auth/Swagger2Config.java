@@ -34,7 +34,7 @@ public class Swagger2Config {
 	 */
 
 	private ApiInfo apiInfo() {
-		return new ApiInfoBuilder().title("建行新微银行WEB-API文档").description("新微银行WEB-API文档")
+		return new ApiInfoBuilder().title("WEB-API文档").description("新微银行WEB-API文档")
 				.termsOfServiceUrl("http://wei.ujia007.com").version("1.0").build();
 	}
 
