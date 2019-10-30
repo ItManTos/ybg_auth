@@ -16,7 +16,7 @@
     },
     "dependencies": {
         "avue-cli": "^1.4.7",
-        "axios": "^0.16.2",
+        "axios": "^0.18.1",
         "babel-polyfill": "^6.26.0",
         "compression": "^1.6.2",
         "element-ui": "^2.3.6",
